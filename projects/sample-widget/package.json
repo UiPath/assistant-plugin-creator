@@ -1,0 +1,19 @@
+{
+  "name": "sample-widget",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/forms": "~9.0.0",
+    "@uipath/widget.sdk": "0.0.8",
+    "tslib": "^1.10.0",
+    "date-fns": "^2.7.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ctrl/tinycolor": "^2.6.0",
+    "@angular/cdk": "~9.0.0",
+    "@angular/material": "^9.0.0",
+    "@angular/animations": "~9.0.0",
+    "lodash": "^4.17.15",
+    "rxjs": "~6.5.4"
+  }
+}

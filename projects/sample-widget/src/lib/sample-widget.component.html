@@ -1,0 +1,40 @@
+<mat-card *ngIf="processIdToAlias | async as idToAlias"
+          class="mat-elevation-z2">
+    <mat-card-header>
+        <mat-card-title>
+            Sample Widget
+        </mat-card-title>
+        <div class="card-header-actions">
+            <button [@rotate180]="isCollapsed ? RotateState.End : RotateState.Start"
+                    [matTooltip]="(!isCollapsed ? 'Collapse' : 'Expand')"
+                    (click)="isCollapsed = !isCollapsed"
+                    mat-icon-button
+                    data-testId="process-list-minimize">
+                <mat-icon svgIcon="chevronup16"></mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content [@collapse]="isCollapsed ? CollapseState.Hide : CollapseState.Show">
+        <ng-container *ngIf="processList$ | async as processList">
+            <mat-list *ngIf="processList?.length; else emptyProcessList">
+                <cdk-virtual-scroll-viewport itemSize="72">
+                    <ng-container *cdkVirtualFor="let process of processList">
+                        <mat-list-item>
+                            <process-list-item [process]="process"
+                                               [alias]="idToAlias[process.key]"
+                                               (processAction)="actionHandler($event)"
+                                               (click)="rename(process.key, idToAlias[process.key] || process.name)">
+                            </process-list-item>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </ng-container>
+                </cdk-virtual-scroll-viewport>
+            </mat-list>
+        </ng-container>
+        <ng-template #emptyProcessList>
+            <div class="empty-process-list">
+                No processes found :(
+            </div>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

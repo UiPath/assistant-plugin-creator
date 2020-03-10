@@ -1,0 +1,61 @@
+{
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "workbench.enableExperiments": false,
+    "breadcrumbs.enabled": true,
+    "files.exclude": {},
+    "files.watcherExclude": {
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/coverage": true,
+    },
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.quoteStyle": "single",
+    "html.format.wrapAttributes": "force-aligned",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "colorize.include": [
+        "src/**/*.scss"
+    ],
+    "colorize.languages": [
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "svg"
+    ],
+    "colorize.colorized_variables": [
+        "SASS"
+    ],
+    "colorize.enable_search_variables": false,
+    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "words",
+    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 1,
+    "importSorter.importStringConfiguration.trailingComma": "multiLine",
+    "importSorter.generalConfiguration.sortOnBeforeSave": true,
+    "importSorter.sortConfiguration.customOrderingRules.rules": [
+        {
+            "type": "importMember",
+            "regex": "^$",
+            "orderLevel": 5,
+            "disableSort": true
+        },
+        {
+            "regex": "^[@]",
+            "orderLevel": 10
+        },
+        {
+            "regex": "^[^.@]",
+            "orderLevel": 15
+        },
+        {
+            "regex": "^[.]",
+            "orderLevel": 30
+        }
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true,
+    },
+    "editor.tabSize": 4,
+    "scssFormatter.tabWidth": 4,
+}
