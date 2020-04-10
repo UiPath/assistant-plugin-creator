@@ -17,18 +17,16 @@
     <mat-card-content [@collapse]="isCollapsed ? CollapseState.Hide : CollapseState.Show">
         <ng-container *ngIf="processList$ | async as processList">
             <mat-list *ngIf="processList?.length; else emptyProcessList">
-                <cdk-virtual-scroll-viewport itemSize="72">
-                    <ng-container *cdkVirtualFor="let process of processList">
-                        <mat-list-item>
-                            <process-list-item [process]="process"
-                                               [alias]="idToAlias[process.key]"
-                                               (processAction)="actionHandler($event)"
-                                               (click)="rename(process.key, idToAlias[process.key] || process.name)">
-                            </process-list-item>
-                        </mat-list-item>
-                        <mat-divider></mat-divider>
-                    </ng-container>
-                </cdk-virtual-scroll-viewport>
+                <ng-container *ngFor="let process of processList">
+                    <mat-list-item>
+                        <process-list-item [process]="process"
+                                           [alias]="idToAlias[process.key]"
+                                           (processAction)="actionHandler($event)"
+                                           (click)="rename(process.key, idToAlias[process.key] || process.name)">
+                        </process-list-item>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </ng-container>
             </mat-list>
         </ng-container>
         <ng-template #emptyProcessList>

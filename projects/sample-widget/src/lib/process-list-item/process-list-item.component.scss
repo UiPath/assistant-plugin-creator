@@ -1,10 +1,21 @@
-:host {
+process-list-item {
     display: block;
     height: 100%;
     position: relative;
 
-    .mat-progress-bar {
-        position: absolute;
-        bottom: .25rem;
+    .title {
+        position: relative;
+        left: 26px;
+        top: 1px;
+    }
+
+    .subtitle {
+        position: relative;
+        top: -3px;
+        padding-left: 26px;
+    }
+
+    .ui-widget-item-actions {
+        margin-right: 30px;
     }
 }

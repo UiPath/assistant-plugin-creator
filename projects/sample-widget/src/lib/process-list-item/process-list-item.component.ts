@@ -4,6 +4,7 @@ import {
     EventEmitter,
     Input,
     Output,
+    ViewEncapsulation,
 } from '@angular/core';
 import {
     ActionType,
@@ -17,6 +18,7 @@ import {
     templateUrl: './process-list-item.component.html',
     styleUrls: ['./process-list-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class ProcessListItemComponent {
     @Input()
@@ -34,11 +36,13 @@ export class ProcessListItemComponent {
     public ActionType = ActionType;
     public ProcessInstallationState = ProcessInstallationState;
 
-    public dispatch(action: ActionType) {
+    public dispatch(action: ActionType, e: Event) {
         this.processAction.emit({
             actionType: action,
             processKey: this.process.key,
             source: this.process,
         });
+
+        e.stopPropagation();
     }
 }

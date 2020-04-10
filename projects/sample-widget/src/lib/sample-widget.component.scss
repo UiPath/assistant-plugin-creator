@@ -1,32 +1,29 @@
 sample-widget {
-  $contentHeight: 360px;
   display: block;
 
   .mat-card {
     overflow: hidden;
     height: auto;
-
-    .cdk-virtual-scroll-viewport {
-      height: calc(#{$contentHeight} + 1px);
-      overflow-y: overlay;
-    }
   }
 
-  .mat-list.mat-list-base {
+  .mat-list-base {
     padding: 0;
+    padding-bottom: 10px;
 
     .mat-list-item {
       box-sizing: border-box;
-      height: 4.5rem;
+      height: 48px;
+      font-size: 14px;
 
       .mat-list-item-content {
+        padding: 0px;
         display: block;
       }
     }
   }
 
   .empty-process-list {
-    height: $contentHeight;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;

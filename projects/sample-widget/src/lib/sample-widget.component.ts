@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import {
     ActionType,
-    collapseAnimation,
     CollapseState,
+    collapseVariableHeight,
     DialogService,
     PersistentStore,
     PersistentStoreFactory,
@@ -16,7 +16,6 @@ import {
     rotate180Animation,
     rotate360Animation,
     RotateState,
-    WIDGET_ITEM_HEIGHT,
     WidgetAppState,
 } from '@uipath/widget.sdk';
 
@@ -28,8 +27,6 @@ import {
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 
-const WIDGET_HEIGHT = `calc(${WIDGET_ITEM_HEIGHT} * 5)`;
-
 type ProcessIdToAlias = Record<string, string>;
 
 @Component({
@@ -38,7 +35,7 @@ type ProcessIdToAlias = Record<string, string>;
   styleUrls: ['./sample-widget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('collapse', collapseAnimation(WIDGET_HEIGHT)),
+    trigger('collapse', collapseVariableHeight()),
     trigger('rotate180', rotate180Animation()),
     trigger('rotate360', rotate360Animation()),
   ],
@@ -59,6 +56,9 @@ export class SampleWidgetComponent {
     storageFactory: PersistentStoreFactory,
     appState: WidgetAppState,
   ) {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
     appState.language$.subscribe(console.log);
     appState.theme$.subscribe(console.log);
     this.store = storageFactory.create<ProcessIdToAlias>('SAMPLE_WIDGET'); // TODO: change key
@@ -70,7 +70,9 @@ export class SampleWidgetComponent {
   }
 
   public async rename(processKey: string, currentName: string) {
-    const result = await this.dialogService.custom<string>(InputDialogComponent, currentName, { panelClass: 'input-dialog' }).toPromise();
+    const result = await this.dialogService.custom<string>(InputDialogComponent, currentName, { panelClass: 'input-dialog' })
+      .afterClosedResult()
+      .toPromise();
     if (!result) {
       return;
     }
@@ -92,7 +94,9 @@ export class SampleWidgetComponent {
             message: 'Are you sure you want to stop this process?',
             title: 'Stopping all processes',
             translateData: source,
-          }).pipe(
+          })
+          .afterClosedResult()
+          .pipe(
             filter(result => !!result),
             switchMapTo(this.robotService.stopProcess(processKey)),
           ).toPromise();

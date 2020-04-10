@@ -5,7 +5,7 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "~9.0.0",
-    "@uipath/widget.sdk": "0.0.8",
+    "@uipath/widget.sdk": "0.0.2",
     "tslib": "^1.10.0",
     "date-fns": "^2.7.0",
     "@ngx-translate/core": "^11.0.1",
