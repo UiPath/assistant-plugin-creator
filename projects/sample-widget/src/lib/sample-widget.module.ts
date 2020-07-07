@@ -28,7 +28,6 @@ import { SampleWidgetComponent } from './sample-widget.component';
 @NgModule({
   declarations: [
     SampleWidgetComponent,
-    MainComponent,
     ProcessListItemComponent,
     InputDialogComponent
   ],
@@ -50,6 +49,6 @@ import { SampleWidgetComponent } from './sample-widget.component';
     MatFormFieldModule,
     MatInputModule,
   ],
-  exports: [MainComponent]
+  exports: [SampleWidgetComponent]
 })
 export class SampleWidgetModule { }
