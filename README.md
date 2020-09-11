@@ -28,6 +28,10 @@ You may want to use `WidgetAppState.language$` and `WidgetAppState.theme$` if yo
 1. Start Agent desktop with the --debug flag.
 2. Open dev tools with Ctrl+Shift+I.
 
+## Changelog
+
+The changelog for `@uipath/widget.sdk` can be found [here](https://www.npmjs.com/package/@uipath/widget.sdk).
+
 ## License
 
 You can use the contents of this repository/package subject to your license agreement with UiPath for the UiPath Platform.
