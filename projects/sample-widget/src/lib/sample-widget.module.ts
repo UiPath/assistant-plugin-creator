@@ -21,7 +21,6 @@ import {
 } from '@uipath/widget.sdk';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
-import { MainComponent } from './main.component';
 import { ProcessListItemComponent } from './process-list-item/process-list-item.component';
 import { SampleWidgetComponent } from './sample-widget.component';
 

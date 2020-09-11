@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.0",
+    "@angular/cdk": "^9.0.0",
     "@angular/common": "~9.0.0",
     "@angular/compiler": "~9.0.0",
     "@angular/core": "~9.0.0",
@@ -20,8 +21,10 @@
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
     "@types/lodash": "^4.14.149",
-    "@uipath/widget.sdk": "0.0.2",
+    "@uipath/widget.sdk": "0.0.3",
+    "@uipath/angular": "^9.0.7",
     "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

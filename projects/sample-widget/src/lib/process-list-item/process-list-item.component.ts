@@ -38,6 +38,7 @@ export class ProcessListItemComponent {
 
     public dispatch(action: ActionType, e: Event) {
         this.processAction.emit({
+            trigger: '',
             actionType: action,
             processKey: this.process.key,
             source: this.process,
