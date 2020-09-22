@@ -86,7 +86,7 @@ export class SampleWidgetComponent {
   public async actionHandler({ actionType, processKey, source }: ProcessAction) {
     switch (actionType) {
       case ActionType.Start:
-        return await this.robotService.startJob({ processKey });
+        return await this.robotService.startJob({ processKey }).toPromise();
       case ActionType.Stop:
         return await this.dialogService
           .confirmation({
