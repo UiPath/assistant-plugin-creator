@@ -23,12 +23,14 @@ import {
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { ProcessListItemComponent } from './process-list-item/process-list-item.component';
 import { SampleWidgetComponent } from './sample-widget.component';
+import { SidePanelContentComponent } from './side-panel-content/side-panel-content.component';
 
 @NgModule({
   declarations: [
     SampleWidgetComponent,
     ProcessListItemComponent,
-    InputDialogComponent
+    InputDialogComponent,
+    SidePanelContentComponent,
   ],
   imports: [
     TitleBarComponentModule,
@@ -48,6 +50,9 @@ import { SampleWidgetComponent } from './sample-widget.component';
     MatFormFieldModule,
     MatInputModule,
   ],
-  exports: [SampleWidgetComponent]
+  exports: [
+    SampleWidgetComponent,
+    SidePanelContentComponent,
+  ]
 })
 export class SampleWidgetModule { }

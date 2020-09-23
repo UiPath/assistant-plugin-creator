@@ -26,8 +26,11 @@ import {
 } from 'rxjs/operators';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import { SampleWidgetModule } from './sample-widget.module';
+import { SidePanelContentComponent } from './side-panel-content/side-panel-content.component';
 
 type ProcessIdToAlias = Record<string, string>;
+declare const widgetName: string;
 
 @Component({
   selector: 'sample-widget',
@@ -53,15 +56,14 @@ export class SampleWidgetComponent {
   constructor(
     private robotService: RobotService,
     private dialogService: DialogService,
+    private appState: WidgetAppState,
     storageFactory: PersistentStoreFactory,
-    appState: WidgetAppState,
   ) {
-    // tslint:disable-next-line: no-debugger
-    debugger;
+    console.log(widgetName + ' loaded!');
 
     appState.language$.subscribe(console.log);
     appState.theme$.subscribe(console.log);
-    this.store = storageFactory.create<ProcessIdToAlias>('SAMPLE_WIDGET'); // TODO: change key
+    this.store = storageFactory.create<ProcessIdToAlias>(widgetName);
     this.refreshProcessAliases();
   }
 
@@ -106,6 +108,8 @@ export class SampleWidgetComponent {
         return await this.robotService.pauseProcess(processKey).toPromise();
       case ActionType.Install:
         return await this.robotService.installProcess({ processKey }).toPromise();
+      case ActionType.Edit:
+        return this.appState.openSidePanel(widgetName, SidePanelContentComponent, SampleWidgetModule, processKey);
     }
   }
 }

@@ -1,64 +1,60 @@
 <ng-container *ngIf="process.status$ | async as status">
-    <ui-widget-item [tooltip]="process.name + (alias ? ' a.k.a. ' + alias : '') + '\n\nVersion: ' + process.version"
-                    (dblclick)="dispatch(status.isRunning ? ActionType.Stop : ActionType.Start, $event)"
-                    class="full-width-item">
-        <ng-container ui-widget-item-title>
-            <span class="title">{{ alias || process.name }}</span>
+  <ui-widget-item [tooltip]="process.name + (alias ? ' a.k.a. ' + alias : '') + '\n\nVersion: ' + process.version"
+                  (dblclick)="dispatch(status.isRunning ? ActionType.Stop : ActionType.Start, $event)"
+                  class="full-width-item">
+    <ng-container ui-widget-item-title>
+      <span class="title">{{ alias || process.name }}</span>
+    </ng-container>
+    <ng-container ui-widget-item-subtitle>
+      <span class="subtitle">
+        <ng-container *ngIf="process.state === ProcessInstallationState.NotInstalled; else lastRunTmpl">
+          Awaiting Install
         </ng-container>
-        <ng-container ui-widget-item-subtitle>
-            <span class="subtitle">
-                <ng-container *ngIf="process.state === ProcessInstallationState.NotInstalled; else lastRunTmpl">
-                    Awaiting Install
-                </ng-container>
-                <ng-template #lastRunTmpl>
-                    <ng-container *ngIf="status?.lastRunDate">
-                        {{'Last run '}}
-                        <ui-format-distance [date]="status?.lastRunDate"></ui-format-distance>
-                    </ng-container>
-                </ng-template>
-            </span>
-        </ng-container>
-        <ng-container ui-widget-item-actions>
-            <ng-container *ngIf="process.state === ProcessInstallationState.NotInstalled">
-                <button [disabled]="disabled"
-                        [matTooltip]="'Install'"
-                        [attr.aria-label]="'Install process'"
-                        (click)="dispatch(ActionType.Install, $event)"
-                        color="accent"
-                        mat-icon-button
-                        data-testId="process-install">
-                    <mat-icon svgIcon="download24"></mat-icon>
-                </button>
-            </ng-container>
-            <ng-container *ngIf="process.state === ProcessInstallationState.Installed">
-                <button *ngIf="!status?.isRunning; else stopButton"
-                        [disabled]="disabled || status?.isStopping"
-                        [matTooltip]="'Start'"
-                        [attr.aria-label]="'Start'"
-                        (click)="dispatch(ActionType.Start, $event)"
-                        color="accent"
-                        mat-icon-button
-                        data-testId="process-play">
-                    <mat-icon svgIcon="start24"></mat-icon>
-                </button>
+        <ng-template #lastRunTmpl>
+          <ng-container *ngIf="status?.lastRunDate">
+            {{'Last run '}}
+            <ui-format-distance [date]="status?.lastRunDate"></ui-format-distance>
+          </ng-container>
+        </ng-template>
+      </span>
+    </ng-container>
+    <ng-container ui-widget-item-actions>
+      <button *ngIf="!status?.isRunning; else stopButton"
+              [disabled]="disabled || status?.isStopping"
+              [matTooltip]="'Start'"
+              [attr.aria-label]="'Start'"
+              (click)="dispatch(ActionType.Start, $event)"
+              color="accent"
+              mat-icon-button
+              data-testId="process-play">
+        <mat-icon svgIcon="start24"></mat-icon>
+      </button>
 
-                <ng-template #stopButton>
-                    <button *ngIf="status?.isRunning"
-                            [disabled]="disabled || status?.isStopping"
-                            [matTooltip]="'Stop'"
-                            [attr.aria-label]="'Stop'"
-                            (click)="dispatch(ActionType.Stop, $event)"
-                            color="accent"
-                            mat-icon-button
-                            data-testId="process-stop">
-                        <mat-icon svgIcon="stop24"></mat-icon>
-                    </button>
-                </ng-template>
-            </ng-container>
-        </ng-container>
-    </ui-widget-item>
+      <ng-template #stopButton>
+        <button *ngIf="status?.isRunning"
+                [disabled]="disabled || status?.isStopping"
+                [matTooltip]="'Stop'"
+                [attr.aria-label]="'Stop'"
+                (click)="dispatch(ActionType.Stop, $event)"
+                color="accent"
+                mat-icon-button
+                data-testId="process-stop">
+          <mat-icon svgIcon="stop24"></mat-icon>
+        </button>
+      </ng-template>
 
-    <mat-progress-bar *ngIf="process.state === ProcessInstallationState.Installing"
-                      mode="indeterminate">
-    </mat-progress-bar>
+      <button [matTooltip]="'Edit'"
+              [attr.aria-label]="'Edit'"
+              (click)="dispatch(ActionType.Edit, $event)"
+              color="accent"
+              mat-icon-button
+              data-testId="process-edit">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </ng-container>
+  </ui-widget-item>
+
+  <mat-progress-bar *ngIf="process.state === ProcessInstallationState.Installing"
+                    mode="indeterminate">
+  </mat-progress-bar>
 </ng-container>
