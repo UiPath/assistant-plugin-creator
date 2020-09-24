@@ -5,7 +5,7 @@ The project is an Angular library that contains the implementation of a sample w
 
 `@uipath/widget.sdk` exports reusable components and the APIs (such as `RobotService`) for interacting with UiPath Assistant. Do not import from `@uipath/agent.sdk` as it exposes unstable APIs.
 
-When creating widgets at runtime, UiPath Assistant, is looking for a `MainComponent` in each widget bundle. Make sure you add it to `projects\sample-widget\src\public-api.ts`.
+When creating widgets at runtime, UiPath Assistant, is looking for a `MainComponent` that is exported by a `MainModule` (for each widget). Make sure you add them to `projects\sample-widget\src\public-api.ts`. You may also expose metadata about the widget (such as title, description and icon for its tab in Assistant) via the functions or constants found in `projects\sample-widget\src\lib\widget-metadata.ts`.
 
 To force a package into the final bundle, add it to the `bundledDependencies` array in `projects/sample-widget/package.json`. If you get the error `<module>, required by <plugin> was not found` when the widget is loading, you probably forgot to do this.
 
