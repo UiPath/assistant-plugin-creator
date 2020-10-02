@@ -3,7 +3,7 @@ The project is an Angular library that contains the implementation of a sample w
 
 ## Developing widgets
 
-`@uipath/widget.sdk` exports reusable components and the APIs (such as `RobotService`) for interacting with UiPath Assistant. Do not import from `@uipath/agent.sdk` as it exposes unstable APIs.
+`@uipath/widget.sdk` exports reusable components and the APIs (such as `RobotService`) for interacting with UiPath Assistant. You may use `ApiService` to get access to Orchestrator. Do not import from `@uipath/agent.sdk`, as it exposes unstable APIs.
 
 When creating widgets at runtime, UiPath Assistant, is looking for a `MainComponent` that is exported by a `MainModule` (for each widget). Make sure you add them to `projects\sample-widget\src\public-api.ts`. You may also expose metadata about the widget (such as title, description and icon for its tab in Assistant) via the functions or constants found in `projects\sample-widget\src\lib\widget-metadata.ts`.
 
