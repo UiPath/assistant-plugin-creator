@@ -1,7 +1,13 @@
 <ng-container *ngIf="process.status$ | async as status">
   <ui-widget-item [tooltip]="process.name + (alias ? ' a.k.a. ' + alias : '') + '\n\nVersion: ' + process.version"
                   (dblclick)="dispatch(status.isRunning ? ActionType.Stop : ActionType.Start, $event)"
-                  class="full-width-item">
+                  class="with-icon">
+    <ng-container ui-widget-item-icon>
+      <div [ngClass]="'tile-color-' + process.color"
+           class="initial-letter-tile">
+        {{ process.initialLetter }}
+      </div>
+    </ng-container>
     <ng-container ui-widget-item-title>
       <span class="title">{{ alias || process.name }}</span>
     </ng-container>
@@ -24,7 +30,6 @@
               [matTooltip]="'Start'"
               [attr.aria-label]="'Start'"
               (click)="dispatch(ActionType.Start, $event)"
-              color="accent"
               mat-icon-button
               data-testId="process-play">
         <mat-icon svgIcon="start24"></mat-icon>
@@ -36,7 +41,6 @@
                 [matTooltip]="'Stop'"
                 [attr.aria-label]="'Stop'"
                 (click)="dispatch(ActionType.Stop, $event)"
-                color="accent"
                 mat-icon-button
                 data-testId="process-stop">
           <mat-icon svgIcon="stop24"></mat-icon>
@@ -46,10 +50,9 @@
       <button [matTooltip]="'Edit'"
               [attr.aria-label]="'Edit'"
               (click)="dispatch(ActionType.Edit, $event)"
-              color="accent"
               mat-icon-button
               data-testId="process-edit">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon>arrow_right_alt</mat-icon>
       </button>
     </ng-container>
   </ui-widget-item>

@@ -1,21 +1,5 @@
 process-list-item {
-    display: block;
-    height: 100%;
-    position: relative;
-
-    .title {
-        position: relative;
-        left: 26px;
-        top: 1px;
-    }
-
-    .subtitle {
-        position: relative;
-        top: -3px;
-        padding-left: 26px;
-    }
-
-    .ui-widget-item-actions {
-        margin-right: 30px;
-    }
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0;
 }
