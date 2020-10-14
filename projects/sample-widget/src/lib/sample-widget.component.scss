@@ -1,9 +1,12 @@
 sample-widget {
   display: block;
 
-  .mat-card {
-    overflow: hidden;
-    height: auto;
+  .widget-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 14px 0 10px;
+    padding: 0;
   }
 
   .mat-list-base {
@@ -22,12 +25,15 @@ sample-widget {
     }
   }
 
-  .empty-process-list {
-    height: 100px;
+  .widget-empty-state-message {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.25rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
     font-weight: 600;
+    padding: 24px 0;
+    box-sizing: border-box;
   }
 }

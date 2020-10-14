@@ -1,5 +1,15 @@
-<p>Editing process with id: "{{data}}"</p>
-<button mat-button
-        (click)="close()">
-  OK
-</button>
+<div class="default-side-panel-styling">
+  <div class="side-panel-header">
+    <h1>
+      Sample side panel
+    </h1>
+    <button [matTooltip]="'Close'"
+            (click)="close()"
+            mat-icon-button>
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+  <div class="side-panel-scrollable-container">
+    Sample side-panel content
+  </div>
+</div>
