@@ -2,9 +2,12 @@
   "name": "widget-creator",
   "version": "0.0.0",
   "scripts": {
+    "postinstall": "node install-nuget.js",
+    "prepack": "shx cp dist/sample-widget/bundles/sample-widget.umd.js dist/widget.js",
+    "pack": "nuget pack widget.nuspec -OutputDirectory dist",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -48,6 +51,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-packagr": "^9.0.0",
     "protractor": "~5.4.3",
+    "shx": "^0.3.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
