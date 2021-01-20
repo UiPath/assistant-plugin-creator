@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <version>0.0.1</version>
+    <id>SampleWidget</id>
+    <authors>SampleDev</authors>
+    <projectUrl>https://github.com/UiPath/assistant-plugin-creator</projectUrl>
+    <description>A widget for UiPath Assistant</description>
+    <tags>Sample UiPath Assistant Widget</tags>
+    <dependencies></dependencies>
+  </metadata>
+  <files>
+    <file src="dist\widget.js" />
+  </files>
+</package>

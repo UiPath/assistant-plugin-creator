@@ -7,7 +7,7 @@ The project is an Angular library that contains the implementation of a sample w
 
 When creating widgets at runtime, UiPath Assistant, is looking for a `MainComponent` that is exported by a `MainModule` (for each widget). Make sure you add them to `projects\sample-widget\src\public-api.ts`. You may also expose metadata about the widget (such as title, description and icon for its tab in Assistant) via the functions or constants found in `projects\sample-widget\src\lib\widget-metadata.ts`.
 
-To force a package into the final bundle, add it to the `bundledDependencies` array in `projects/sample-widget/package.json`. If you get the error `<module>, required by <plugin> was not found` when the widget is loading, you probably forgot to do this.
+To force a package into the final bundle, add it to the `bundledDependencies` array in `projects/sample-widget/package.json`. If you get the error `<module>, required by <widget> was not found` when the widget is loading, you probably forgot to do this.
 
 You may want to use `WidgetAppState.language$` and `WidgetAppState.theme$` if you need to react to those changes.
 
@@ -16,7 +16,11 @@ You may want to use `WidgetAppState.language$` and `WidgetAppState.theme$` if yo
 1. Run `npm i`
 2. Run `ng build --prod`
 3. The output is `dist\sample-widget\bundles\sample-widget.umd.js` (or the minified version)
-4. Rename the output file. Each plugin is uniquely identified by the file name.
+4. Rename the output file. Each unpacked widget is uniquely identified by the file name.
+
+## Packing a widget
+
+Assistant widgets can be bundled into nuget packges that can be published to nuget feeds and then installed into Assistant. To bundle a widget, simply build the widget, write the appropriate metadata to the `widget.nuspec` file and run `npm run pack`. If not running on Windows, you need a .NET compiler (such as [Mono](https://www.mono-project.com/download/stable/)) to run nuget.exe.
 
 ## Installing/updating a widget
 
