@@ -1,7 +1,7 @@
 <div *ngIf="processList$ | async as processList"
      class="main-container">
   <h1 class="widget-title">
-    Sample Widget
+    {{ 'SAMPLE_WIDGET' | translation }}
   </h1>
   <div *ngIf="processIdToAlias | async as idToAlias"
        class="tab-scrollable-container">

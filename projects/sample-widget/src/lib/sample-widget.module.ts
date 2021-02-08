@@ -14,12 +14,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import {
     FormatDistanceModule,
     TitleBarComponentModule,
     WidgetItemModule,
 } from '@uipath/widget.sdk';
 
+import { TranslationPipe } from './i18n';
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { ProcessListItemComponent } from './process-list-item/process-list-item.component';
 import { SampleWidgetComponent } from './sample-widget.component';
@@ -31,8 +33,10 @@ import { SidePanelContentComponent } from './side-panel-content/side-panel-conte
     ProcessListItemComponent,
     InputDialogComponent,
     SidePanelContentComponent,
+    TranslationPipe,
   ],
   imports: [
+    TranslateModule,
     TitleBarComponentModule,
     WidgetItemModule,
     FormatDistanceModule,

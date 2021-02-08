@@ -11,6 +11,10 @@ To force a package into the final bundle, add it to the `bundledDependencies` ar
 
 You may want to use `WidgetAppState.language$` and `WidgetAppState.theme$` if you need to react to those changes.
 
+### Localization
+
+Starting with Assistant 21.4.x, i18n is supported via [ngx-translate](https://github.com/ngx-translate/core). `TranslationPipe` can be used to translate the keys found in `projects/sample-widge/src/lib/i18n`. The fallback language is `en`.
+
 ## Building a widget
 
 1. Run `npm i`
