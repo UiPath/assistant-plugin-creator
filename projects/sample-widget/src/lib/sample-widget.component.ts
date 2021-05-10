@@ -2,6 +2,7 @@ import { trigger } from '@angular/animations';
 import {
     ChangeDetectionStrategy,
     Component,
+    Inject,
     ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -9,6 +10,7 @@ import {
     CollapseState,
     collapseVariableHeight,
     DialogService,
+    IWidgetHomeTabItem,
     PersistentStore,
     PersistentStoreFactory,
     ProcessAction,
@@ -16,7 +18,10 @@ import {
     rotate180Animation,
     rotate360Animation,
     RotateState,
+    TabLabel,
+    WIDGET_ID,
     WidgetAppState,
+    WidgetHomeTabService,
 } from '@uipath/widget.sdk';
 
 import { BehaviorSubject } from 'rxjs';
@@ -30,7 +35,6 @@ import { SampleWidgetModule } from './sample-widget.module';
 import { SidePanelContentComponent } from './side-panel-content/side-panel-content.component';
 
 type ProcessIdToAlias = Record<string, string>;
-declare const widgetName: string;
 
 @Component({
   selector: 'sample-widget',
@@ -50,22 +54,70 @@ export class SampleWidgetComponent {
   public isCollapsed = false;
   public processList$ = this.robotService.processList$;
   public processIdToAlias = new BehaviorSubject<ProcessIdToAlias>({});
-
   private store: PersistentStore<ProcessIdToAlias>;
+  private refreshedTimes = 0;
 
   constructor(
     private robotService: RobotService,
     private dialogService: DialogService,
     private appState: WidgetAppState,
-    storageFactory: PersistentStoreFactory,
+    private homeTab: WidgetHomeTabService,
+    @Inject(WIDGET_ID)
+    private widgetId: string,
+    public storageFactory: PersistentStoreFactory,
   ) {
-    console.log(widgetName + ' loaded!');
-
     appState.language$.subscribe(console.log);
     appState.theme$.subscribe(console.log);
-    this.store = storageFactory.create<ProcessIdToAlias>(widgetName);
+    this.store = storageFactory.create<ProcessIdToAlias>(this.widgetId);
     this.refreshProcessAliases();
+
+    homeTab.setSection({
+      items: [this.getHomeTabItem()],
+      title: this.widgetItemIntl(),
+      onItemClicked: () => this.homeTab.openSidePanel(SidePanelContentComponent, SampleWidgetModule, { isOnHomeTab: true, run: this.runHomeTabItem }),
+      onButtonClicked: this.runHomeTabItem,
+      onMenuItemClicked: item => {
+        homeTab.togglePinToLaunchpad(item);
+      }
+    });
+
+    homeTab.pinnedItemIds$
+      .subscribe(() => homeTab.setItems([this.getHomeTabItem()]));
+
+    homeTab.refresh$.subscribe(() => {
+      this.homeTab.setItems([{
+        ...this.getHomeTabItem(),
+        details: appState.translate('REFRESHED_TIMES', { count: ++this.refreshedTimes }),
+      }]);
+    });
+
+    appState.search$.subscribe(() => {
+      homeTab.setSearchResults([{ items: [this.getHomeTabItem()], title: this.widgetItemIntl() }]);
+    });
   }
+
+  public getHomeTabItem = (): IWidgetHomeTabItem => ({
+    id: '1',
+    title: this.widgetItemIntl(),
+    details: this.appState.translate('REFRESHED_TIMES', { count: this.refreshedTimes }),
+    tooltip: this.widgetItemIntl(),
+    isDraggableToLaunchpad: true,
+    buttonIcon: 'play_circle_outline',
+    menuItems: [{ text: this.getPinTranslation('1') }],
+  });
+
+  public getPinTranslation = (itemId: string) => this.homeTab.getPinnedItemIds().has(itemId)
+    ? this.appState.translate('SAMPLE_WIDGET_ITEM_UNPIN')
+    : this.appState.translate('SAMPLE_WIDGET_ITEM_PIN')
+
+
+  public widgetItemIntl = () => this.appState.translate('SAMPLE_WIDGET_ITEM');
+
+  public runHomeTabItem = () => this.dialogService.alert({
+    type: 'info',
+    message: this.widgetItemIntl(),
+    title: this.widgetItemIntl(),
+  }).afterClosedResult().subscribe();
 
   public refreshProcessAliases() {
     this.store.read().subscribe(mapping => this.processIdToAlias.next(mapping || {}));
@@ -93,8 +145,8 @@ export class SampleWidgetComponent {
         return await this.dialogService
           .confirmation({
             isDestructive: true,
-            message: 'Are you sure you want to stop this process?',
-            title: 'Stopping all processes',
+            message: this.appState.translate('STOP_PROCESS'),
+            title: this.appState.translate('STOP_PROCESS_TITLE'),
             translateData: source,
           })
           .afterClosedResult()
@@ -109,7 +161,15 @@ export class SampleWidgetComponent {
       case ActionType.Install:
         return await this.robotService.installProcess({ processKey }).toPromise();
       case ActionType.Edit:
-        return this.appState.openSidePanel(widgetName, SidePanelContentComponent, SampleWidgetModule, processKey);
+        return this.appState.openSidePanel(
+          this.widgetId,
+          SidePanelContentComponent,
+          SampleWidgetModule,
+          {
+            isOnHomeTab: false,
+            run: () => this.actionHandler({ actionType: ActionType.Start, processKey, source, trigger: '' }),
+          },
+        );
     }
   }
 }

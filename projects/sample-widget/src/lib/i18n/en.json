@@ -1,3 +1,19 @@
 {
-  "SAMPLE_WIDGET": "Sample widget"
+  "SAMPLE_WIDGET": "Sample widget",
+  "SAMPLE_WIDGET_ITEM": "Sample widget item",
+  "SAMPLE_WIDGET_ITEM_PIN": "Pin item",
+  "SAMPLE_WIDGET_ITEM_UNPIN": "Unpin item",
+  "RUN_ITEM": "Run",
+  "REFRESHED_TIMES": "Refreshed {{count}} times",
+  "STOP_PROCESS": "Are you sure you want to stop this process?",
+  "STOP_PROCESS_TITLE": "Stopping all processes",
+  "AWAITING_INSTALL": "Awaiting Install",
+  "LAST_RUN": "Last run",
+  "START": "Start",
+  "STOP": "Stop",
+  "EDIT": "Edit",
+  "SAMPLE_SIDE_PANEL": "Sample side panel",
+  "SAMPLE_SIDE_PANEL_CONTENT": "Sample side-panel content",
+  "NO_PROCESSES_FOUND": "No processes found",
+  "SAMPLE_SECOND_COLUMN_CONTENT": "Sample second column content"
 }

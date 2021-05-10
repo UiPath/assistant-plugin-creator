@@ -1,7 +1,7 @@
-<div class="default-side-panel-styling">
+<div class="default-side-panel-styling default-process-details-panel-styling">
   <div class="side-panel-header">
     <h1>
-      Sample side panel
+      {{'SAMPLE_SIDE_PANEL'| translation}}
     </h1>
     <button [matTooltip]="'Close'"
             (click)="close()"
@@ -10,6 +10,14 @@
     </button>
   </div>
   <div class="side-panel-scrollable-container">
-    Sample side-panel content
+    {{'SAMPLE_SIDE_PANEL_CONTENT' | translation}}
+  </div>
+  <div class="actions">
+    <button (click)="data.run()"
+            type="button"
+            mat-flat-button
+            color="primary">
+      {{ 'RUN_ITEM' | translation }}
+    </button>
   </div>
 </div>

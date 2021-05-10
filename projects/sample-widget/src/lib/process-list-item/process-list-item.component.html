@@ -14,11 +14,11 @@
     <ng-container ui-widget-item-subtitle>
       <span class="subtitle">
         <ng-container *ngIf="process.state === ProcessInstallationState.NotInstalled; else lastRunTmpl">
-          Awaiting Install
+          {{'AWAITING_INSTALL' | translation}}
         </ng-container>
         <ng-template #lastRunTmpl>
           <ng-container *ngIf="status?.lastRunDate">
-            {{'Last run '}}
+            {{'LAST_RUN' | translation}}
             <ui-format-distance [date]="status?.lastRunDate"></ui-format-distance>
           </ng-container>
         </ng-template>
@@ -27,28 +27,26 @@
     <ng-container ui-widget-item-actions>
       <button *ngIf="!status?.isRunning; else stopButton"
               [disabled]="disabled || status?.isStopping"
-              [matTooltip]="'Start'"
-              [attr.aria-label]="'Start'"
+              [matTooltip]="'START' | translation"
+              [attr.aria-label]="'START' | translation"
               (click)="dispatch(ActionType.Start, $event)"
-              mat-icon-button
-              data-testId="process-play">
+              mat-icon-button>
         <mat-icon svgIcon="start24"></mat-icon>
       </button>
 
       <ng-template #stopButton>
         <button *ngIf="status?.isRunning"
                 [disabled]="disabled || status?.isStopping"
-                [matTooltip]="'Stop'"
-                [attr.aria-label]="'Stop'"
+                [matTooltip]="'STOP' | translation"
+                [attr.aria-label]="'STOP' | translation"
                 (click)="dispatch(ActionType.Stop, $event)"
-                mat-icon-button
-                data-testId="process-stop">
+                mat-icon-button>
           <mat-icon svgIcon="stop24"></mat-icon>
         </button>
       </ng-template>
 
-      <button [matTooltip]="'Edit'"
-              [attr.aria-label]="'Edit'"
+      <button [matTooltip]="'EDIT' | translation"
+              [attr.aria-label]="'EDIT' | translation"
               (click)="dispatch(ActionType.Edit, $event)"
               mat-icon-button
               data-testId="process-edit">

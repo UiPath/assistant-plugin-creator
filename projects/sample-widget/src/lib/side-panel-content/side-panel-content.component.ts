@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
-import { WidgetAppState } from '@uipath/widget.sdk';
-
-declare const widgetName: string;
+import {
+    Component,
+    Inject,
+} from '@angular/core';
+import {
+    TabLabel,
+    WIDGET_ID,
+    WidgetAppState,
+    WidgetHomeTabService,
+} from '@uipath/widget.sdk';
 
 @Component({
   selector: 'lib-side-panel-content',
@@ -9,11 +15,20 @@ declare const widgetName: string;
   styleUrls: ['./side-panel-content.component.scss']
 })
 export class SidePanelContentComponent {
-  public data: string;
+  public data: { isOnHomeTab: boolean, run: () => void };
 
-  constructor(private appState: WidgetAppState) { }
+  constructor(
+    private appState: WidgetAppState,
+    private homeTab: WidgetHomeTabService,
+    @Inject(WIDGET_ID)
+    private widgetId: string
+  ) { }
 
   public close() {
-    this.appState.closeSidePanel(widgetName);
+    if (this.data.isOnHomeTab) {
+      return this.homeTab.closeSidePanel();
+    }
+
+    this.appState.closeSidePanel(this.widgetId);
   }
 }
