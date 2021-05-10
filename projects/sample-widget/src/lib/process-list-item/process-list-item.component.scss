@@ -2,4 +2,8 @@ process-list-item {
   display: block;
   width: 100%;
   margin: 0.4rem 0;
+
+  .ui-widget-item-main-button {
+    cursor: pointer;
+  }
 }

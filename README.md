@@ -1,7 +1,18 @@
 This repository can be used as a starting point for developing custom widgets for UiPath Assistant using Angular 9.
 The project is an Angular library that contains the implementation of a sample widget that interacts with UiPath processes and saves its configuration in a local file.
 
-## Developing widgets
+## Developing your widget
+
+1. Run `npm i`. For npm 7 or higher, use the `--legacy-peer-deps` flag.
+2. `npm run watch`. This will rebuild the widget every time a project file is saved.
+3. Find the `UiPathAssistant` folder in your [UiPath `Studio` / `Robot` install location](https://docs.uipath.com/installation-and-upgrade/docs/studio-install-studio).
+4. Close the Assistant if it is opened.
+5. Provide the path to your widget `.js` output to Assistant by running `UiPath.Assistant.exe` with the `--debug` and `--dev-widget` flags (e.g. `UiPath.Assistant.exe --debug --dev-widget=C:\Users\...\Desktop\assistant-plugin-creator\dist\sample-widget\bundles\sample-widget.umd.js`; The path may not contain spaces).
+6. You should see a new Assistant red tab that hosts your main widget component. The tab is always visible in dev mode, even if enabling `isTabHidden`.
+7. You may open dev tools via `Ctrl+Shift+I`.
+8. By default, the Assistant will read the sibling `sample-widget.umd.js.map` source map file and allow typescript debugging.
+
+## Widget API
 
 `@uipath/widget.sdk` exports reusable components and the APIs (such as `RobotService`) for interacting with UiPath Assistant. You may use `ApiService` to get access to Orchestrator. Do not import from `@uipath/agent.sdk`, as it exposes unstable APIs.
 
@@ -13,14 +24,13 @@ You may want to use `WidgetAppState.language$` and `WidgetAppState.theme$` if yo
 
 ### Localization
 
-Starting with Assistant 21.4.x, i18n is supported via [ngx-translate](https://github.com/ngx-translate/core). `TranslationPipe` can be used to translate the keys found in `projects/sample-widge/src/lib/i18n`. The fallback language is `en`.
+Starting with Assistant 21.4.x, i18n is supported via [ngx-translate](https://github.com/ngx-translate/core). `WidgetTranslationPipe` can be used to translate the keys found in `projects/sample-widge/src/lib/i18n`. The fallback language is `en`.
 
 ## Building a widget
 
-1. Run `npm i`
-2. Run `ng build --prod`
-3. The output is `dist\sample-widget\bundles\sample-widget.umd.js` (or the minified version)
-4. Rename the output file. Each unpacked widget is uniquely identified by the file name.
+1. Run `ng build --prod`
+2. The output is `dist\sample-widget\bundles\sample-widget.umd.js` (or the minified version)
+3. Rename the output file. Each unpacked widget is uniquely identified by the file name.
 
 ## Packing a widget
 
@@ -28,13 +38,8 @@ Assistant widgets can be bundled into nuget packges that can be published to nug
 
 ## Installing/updating a widget
 
-1. Drag and drop the output onto the main window of a running UiPath Assistant. Widgets are saved to `%APPDATA%/UiPath/widgets`. When updating styles, you may need to restart UiPath Assistant.
+Widgets can be installed locally by a simple drag and drop of the output (`sample-widget.umd.js`) onto the main window of a running UiPath Assistant. Widgets are saved to `%APPDATA%/UiPath/widgets`.
 
-## Debugging
-
-1. Install the widget.
-1. Start Agent desktop with the --debug flag.
-2. Open dev tools with Ctrl+Shift+I.
 
 ## Changelog
 

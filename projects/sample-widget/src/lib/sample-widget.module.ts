@@ -19,9 +19,9 @@ import {
     FormatDistanceModule,
     TitleBarComponentModule,
     WidgetItemModule,
+    WidgetTranslationModule,
 } from '@uipath/widget.sdk';
 
-import { TranslationPipe } from './i18n';
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { ProcessListItemComponent } from './process-list-item/process-list-item.component';
 import { SampleWidgetComponent } from './sample-widget.component';
@@ -33,9 +33,9 @@ import { SidePanelContentComponent } from './side-panel-content/side-panel-conte
     ProcessListItemComponent,
     InputDialogComponent,
     SidePanelContentComponent,
-    TranslationPipe,
   ],
   imports: [
+    WidgetTranslationModule,
     TranslateModule,
     TitleBarComponentModule,
     WidgetItemModule,

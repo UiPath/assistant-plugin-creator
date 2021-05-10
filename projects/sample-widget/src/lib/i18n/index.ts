@@ -25,5 +25,3 @@ export const i18n = {
   tr,
   'zh-CN': zhCN,
 };
-
-export * from './translation.pipe';

@@ -8,6 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "watch": "ng build --prod --watch",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -26,7 +27,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@types/lodash": "^4.14.149",
     "@uipath/angular": "^9.0.7",
-    "@uipath/widget.sdk": "0.0.5",
+    "@uipath/widget.sdk": "0.0.7",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.15",
     "rxjs": "~6.5.4",
