@@ -11,6 +11,7 @@ import {
     ILiveProcess,
     ProcessAction,
     ProcessInstallationState,
+    ProcessActionType,
 } from '@uipath/widget.sdk';
 
 @Component({
@@ -36,7 +37,7 @@ export class ProcessListItemComponent {
     public ActionType = ActionType;
     public ProcessInstallationState = ProcessInstallationState;
 
-    public dispatch(action: ActionType, e: Event) {
+    public dispatch(action: ProcessActionType, e: Event) {
         this.processAction.emit({
             trigger: '',
             actionType: action,

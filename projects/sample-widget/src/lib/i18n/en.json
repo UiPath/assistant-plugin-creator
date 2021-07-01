@@ -1,5 +1,7 @@
 {
   "SAMPLE_WIDGET": "Sample widget",
+  "SAMPLE_TAB": "Sample Tab",
+  "SAMPLE_TAB_TEXT": "Sample content for process with id:",
   "SAMPLE_WIDGET_ITEM": "Sample widget item",
   "SAMPLE_WIDGET_ITEM_PIN": "Pin item",
   "SAMPLE_WIDGET_ITEM_UNPIN": "Unpin item",

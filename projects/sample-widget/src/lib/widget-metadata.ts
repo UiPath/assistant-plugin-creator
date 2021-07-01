@@ -1,5 +1,6 @@
 export const widgetMaterialIcon = 'widgets';
 
+// Instead of exporting getWidgetTitle and getWidgetDescription, you may use the WIDGET_TITLE and WIDGET_DESCRIPTION translation keys
 export const getWidgetTitle = lang => {
   switch (lang) {
     case 'en':

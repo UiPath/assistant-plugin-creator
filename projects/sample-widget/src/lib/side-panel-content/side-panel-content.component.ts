@@ -10,7 +10,6 @@ import {
 } from '@uipath/widget.sdk';
 
 @Component({
-  selector: 'lib-side-panel-content',
   templateUrl: './side-panel-content.component.html',
   styleUrls: ['./side-panel-content.component.scss']
 })

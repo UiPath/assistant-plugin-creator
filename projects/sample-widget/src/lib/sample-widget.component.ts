@@ -18,7 +18,6 @@ import {
     rotate180Animation,
     rotate360Animation,
     RotateState,
-    TabLabel,
     WIDGET_ID,
     WidgetAppState,
     WidgetHomeTabService,
@@ -31,6 +30,7 @@ import {
 } from 'rxjs/operators';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import { ProcessDetailsTabComponent } from './process-details-tab/process-details-tab.component';
 import { SampleWidgetModule } from './sample-widget.module';
 import { SidePanelContentComponent } from './side-panel-content/side-panel-content.component';
 
@@ -94,6 +94,9 @@ export class SampleWidgetComponent {
     appState.search$.subscribe(() => {
       homeTab.setSearchResults([{ items: [this.getHomeTabItem()], title: this.widgetItemIntl() }]);
     });
+
+    homeTab.processDetailsOpened$
+      .subscribe(({ processKey, addTabs }) => addTabs(this.getProcessDetailsTabs(processKey)));
   }
 
   public getHomeTabItem = (): IWidgetHomeTabItem => ({
@@ -104,7 +107,7 @@ export class SampleWidgetComponent {
     isDraggableToLaunchpad: true,
     buttonIcon: 'play_circle_outline',
     menuItems: [{ text: this.getPinTranslation('1') }],
-  });
+  })
 
   public getPinTranslation = (itemId: string) => this.homeTab.getPinnedItemIds().has(itemId)
     ? this.appState.translate('SAMPLE_WIDGET_ITEM_UNPIN')
@@ -117,7 +120,7 @@ export class SampleWidgetComponent {
     type: 'info',
     message: this.widgetItemIntl(),
     title: this.widgetItemIntl(),
-  }).afterClosedResult().subscribe();
+  }).afterClosedResult().subscribe()
 
   public refreshProcessAliases() {
     this.store.read().subscribe(mapping => this.processIdToAlias.next(mapping || {}));
@@ -171,5 +174,17 @@ export class SampleWidgetComponent {
           },
         );
     }
+  }
+
+  public getProcessDetailsTabs = async (processKey: string) => {
+    const isRenamedProcess = this.processIdToAlias.value[processKey];
+
+    return isRenamedProcess
+      ? [{
+        component: ProcessDetailsTabComponent,
+        module: SampleWidgetModule,
+        titleTranslationKey: this.appState.getAssistantTranslationKey('SAMPLE_TAB'),
+      }]
+      : [];
   }
 }
