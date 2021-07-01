@@ -23,6 +23,7 @@ import {
 } from '@uipath/widget.sdk';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import { ProcessDetailsTabComponent } from './process-details-tab/process-details-tab.component';
 import { ProcessListItemComponent } from './process-list-item/process-list-item.component';
 import { SampleWidgetComponent } from './sample-widget.component';
 import { SidePanelContentComponent } from './side-panel-content/side-panel-content.component';
@@ -33,6 +34,7 @@ import { SidePanelContentComponent } from './side-panel-content/side-panel-conte
     ProcessListItemComponent,
     InputDialogComponent,
     SidePanelContentComponent,
+    ProcessDetailsTabComponent,
   ],
   imports: [
     WidgetTranslationModule,
