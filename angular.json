@@ -20,26 +20,6 @@
               "tsConfig": "projects/sample-widget/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sample-widget/src/test.ts",
-            "tsConfig": "projects/sample-widget/tsconfig.spec.json",
-            "karmaConfig": "projects/sample-widget/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sample-widget/tsconfig.lib.json",
-              "projects/sample-widget/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }

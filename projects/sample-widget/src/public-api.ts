@@ -1,5 +1,6 @@
-export * from './lib/main.component';
-export * from './lib/main.module';
-export * from './lib/widget-metadata';
+export * from './lib/main';
 export { i18n } from './lib/i18n';
+
+export const widgetMaterialIcon = 'widgets';
 export const isTabHidden = false;
+export const usesWebComponent = true;

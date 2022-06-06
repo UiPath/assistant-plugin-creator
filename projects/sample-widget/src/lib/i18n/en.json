@@ -1,4 +1,6 @@
 {
+  "WIDGET_TITLE": "Sample Widget",
+  "WIDGET_DESCRIPTION": "Created using github.com/UiPath/assistant-plugin-creator",
   "SAMPLE_WIDGET": "Sample widget",
   "SAMPLE_TAB": "Sample Tab",
   "SAMPLE_TAB_TEXT": "Sample content for process with id:",
