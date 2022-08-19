@@ -7,7 +7,7 @@ The project is a Web Component library that contains the implementation of a sam
 2. `npm run watch`. This will rebuild the widget every time a project file is saved.
 3. Find the `UiPathAssistant` folder in your [UiPath `Studio` / `Robot` install location](https://docs.uipath.com/installation-and-upgrade/docs/studio-install-studio).
 4. Close the Assistant if it is opened.
-5. Provide the path to your widget `.js` output to Assistant by running `UiPath.Assistant.exe` with the `--debug` and `--dev-widget` flags (e.g. `UiPath.Assistant.exe --debug --dev-widget=C:\Users\...\Desktop\assistant-plugin-creator\dist\sample-widget\bundles\sample-widget.umd.js`; The path may not contain spaces).
+5. Provide the path to your widget `.js` output to Assistant by running `UiPath.Assistant.exe` with the `--dbg` and `--dev-widget` flags (e.g. `UiPath.Assistant.exe --dbg --dev-widget=C:\Users\...\Desktop\assistant-plugin-creator\dist\sample-widget\bundles\sample-widget.umd.js`; The path may not contain spaces).
 6. You should see a new Assistant red tab that hosts your main widget component. The tab is always visible in dev mode, even if enabling `isTabHidden`.
 7. You may open dev tools via `Ctrl+Shift+I`.
 8. By default, the Assistant will read the sibling `sample-widget.umd.js.map` source map file and allow typescript debugging.
