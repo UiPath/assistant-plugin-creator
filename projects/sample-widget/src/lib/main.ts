@@ -12,6 +12,14 @@ template.innerHTML = `
       font-family: noto-sans;
     }
 
+    h2, h3 {
+      color: var(--text-main);
+    }
+
+    p {
+      color: var(--text-secondary-heading);
+    }
+
     .col {
       padding-left: 1.6rem;
       padding-right: 0.4rem;
@@ -45,13 +53,14 @@ template.innerHTML = `
 
     .processes-list {
       margin-top: 0.8rem;
+      padding-right: 0.4rem;
       overflow: auto;
     }
 
     .process {
       margin: 0.8rem 0;
       padding: 0.8rem;
-      border: 1px solid var(--primary-200);
+      border: 1px solid var(--menu-border);
       display: flex;
       align-items: center;
       font-weight: 500;
@@ -72,12 +81,16 @@ template.innerHTML = `
       white-space: nowrap;
     }
 
+    .process .process-name {
+      color: var(--text-main);
+    }
+
     .process .process-name-and-version {
       overflow: hidden;
     }
 
     .process .process-version {
-      color: var(--text-secondary-heading);
+      color: var(--text-deemphasized);
       font-size: 1.2rem;
     }
 
@@ -90,7 +103,7 @@ template.innerHTML = `
 
     .process .process-buttons button {
       margin-right: 0.4rem;
-      padding: 0.4rem;
+      padding: 0.6rem;
       border: none;
       border-radius: 50%;
       display: flex;
@@ -100,8 +113,12 @@ template.innerHTML = `
       cursor: pointer;
     }
 
+    .process .process-buttons button svg {
+      stroke: var(--icons-action);
+    }
+
     .process .process-buttons button:hover {
-      background-color: var(--button-hover);
+      background-color: var(--background-hover);
     }
 
     .user-info p {
@@ -144,10 +161,10 @@ template.innerHTML = `
     </div>
 
     <h3>Getting the searchbox value</h3>
-    <div class="searchbox-info">
+    <p class="searchbox-info">
       The string below will update as you type in the Home tab search box: <br>
       "<span class="box"></span>"
-    </div>
+    </p>
   </div>
 
   <div class="col second">
