@@ -173,7 +173,7 @@ template.innerHTML = `
   </div>
 `;
 
-export class MainComponent extends HTMLDivElement {
+export class MainComponent extends HTMLElement {
   constructor() {
     super();
 

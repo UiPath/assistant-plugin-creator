@@ -54,7 +54,7 @@
         }
     ],
     "editor.codeActionsOnSave": {
-        "source.fixAll.tslint": true,
+        "source.fixAll.tslint": "explicit"
     },
     "editor.tabSize": 4,
     "scssFormatter.tabWidth": 4,
