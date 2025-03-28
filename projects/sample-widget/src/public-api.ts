@@ -5,3 +5,4 @@ export const widgetMaterialIcon = 'widgets';
 export const isTabHidden = false;
 export const usesWebComponent = true;
 export const title = "Web Widget Title";
+export const isSafariWidget = true;
