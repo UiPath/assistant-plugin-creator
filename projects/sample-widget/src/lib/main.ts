@@ -176,7 +176,9 @@ template.innerHTML = `
 export class MainComponent extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
