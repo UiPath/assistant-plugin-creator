@@ -1,5 +1,6 @@
 This repository can be used as a starting point for developing custom widgets for UiPath Assistant.
-The project is a Web Component library that contains the implementation of a sample widget.
+The project is a Web Component library that contains the implementation of a sample widget and the implementation of an associated settings tab.
+
 
 ## Developing your widget
 
