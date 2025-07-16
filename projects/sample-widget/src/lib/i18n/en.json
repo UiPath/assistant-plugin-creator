@@ -19,5 +19,8 @@
   "SAMPLE_SIDE_PANEL": "Sample side panel",
   "SAMPLE_SIDE_PANEL_CONTENT": "Sample side-panel content",
   "NO_PROCESSES_FOUND": "No processes found",
-  "SAMPLE_SECOND_COLUMN_CONTENT": "Sample second column content"
+  "SAMPLE_SECOND_COLUMN_CONTENT": "Sample second column content",
+  "SETTINGS": {
+    "WIDGET_TITLE": "Sample Widget Settings"
+  }
 }
