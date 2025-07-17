@@ -169,7 +169,7 @@ template.innerHTML = `
 
   <div class="col second">
     <h2>Second column</h2>
-    <p>This column will disappear as you press the "Collapse" button in the top right of the app.</p>
+    <p>This column will disappear when the window is resized to a smaller width (or, on older versions, when you press the "Collapse" button in the top right of the app).</p>
   </div>
 `;
 
